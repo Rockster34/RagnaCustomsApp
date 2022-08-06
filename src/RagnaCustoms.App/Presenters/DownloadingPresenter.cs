@@ -57,8 +57,14 @@ namespace RagnaCustoms.Presenters
 
         public virtual void DownloadCompleted(bool autoClose)
         {
-            if (!autoClose) View.ShowSuccessMessage("Download completed successfuly.", "Information");
-            View.Close();
+            if (!autoClose)
+            {
+                View.ShowSuccessMessage("Download completed successfuly.", "Information");
+            }
+            else { 
+                View.Close();
+            }
+
         }
     }
 }

@@ -122,7 +122,7 @@ namespace RagnaCustoms.Models
         }
 
         public virtual async Task DownloadAsync(int songId, Action<int> downloadProgressChanged,
-            Action<bool> downloadCompleted, Action<string> downloadTitle, bool autoClose = false, string songFolder = null)
+            Action<bool> downloadCompleted, Action<string> downloadTitle, bool autoClose, string songFolder = null)
         {
             using var client = new WebClient();
             var configuration = new Configuration();
@@ -211,7 +211,7 @@ namespace RagnaCustoms.Models
         }
 
         public virtual async Task DownloadListAsync(int listId, Action<int> downloadProgressChanged,
-           Action<bool> downloadCompleted, Action<string> downloadTitle, bool autoClose = false)
+           Action<bool> downloadCompleted, Action<string> downloadTitle, bool autoClose = true)
         {
 
             using var webClient = new WebClient();
@@ -251,6 +251,7 @@ namespace RagnaCustoms.Models
                     if (i >= songs.Count())
                     {
                         downloadTitle?.Invoke($"Finish");
+                        downloadCompleted?.Invoke(autoClose);
                     }
                     else
                     {
@@ -298,6 +299,7 @@ namespace RagnaCustoms.Models
                     if (i >= songs.Count())
                     {
                         downloadTitle?.Invoke($"Finish");
+                        downloadCompleted?.Invoke(autoClose);
                     }
                     else
                     {
