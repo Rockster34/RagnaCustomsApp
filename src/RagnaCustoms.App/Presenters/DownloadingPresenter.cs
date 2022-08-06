@@ -55,7 +55,7 @@ namespace RagnaCustoms.Presenters
             View.DownloadPercent = downloadPercent;
         }
 
-        public virtual void DownloadCompleted(bool autoClose = false)
+        public virtual void DownloadCompleted(bool autoClose = true)
         {
             if (!autoClose) View.ShowSuccessMessage("Download completed successfuly.", "Information");
             View.Close();
